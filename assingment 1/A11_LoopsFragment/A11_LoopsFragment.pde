@@ -5,7 +5,7 @@ void draw() {
   // this is an array of characters
   char [] word = { 'H', 'E', 'L', 'L', 'O', ' ', 'U', 'N', 'I', 'V', 'E', 'R', 'S', 'I', 'T', 'Y', '!'};
   //char [] word = {'R', 'A', 'C', 'E', 'C', 'A', 'R'}; // to test the palindrome method
-  
+
   printForward(word); // method call
   printBackwards(word); // method call
   println( numberOfEs(word)); // call a method that returns a result and print that
