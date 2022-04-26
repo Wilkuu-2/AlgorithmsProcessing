@@ -1,11 +1,14 @@
 class Confetti {
   
   color pinkish;      // a confetti has a colour
-  float xPos;         // a confetti has an x-position
-  float yPos;         // a confetti has an y-position
+  //float xPos;         // a confetti has an x-position
+  //float yPos;         // a confetti has an y-position
   float radius;       // a confetti has a radius;
-  float xSpeed;           // the confetti moves with some speed in x direction
-  float ySpeed;           // the confetti moves with some speed in y direction
+  //float speed.x;           // the confetti moves with some speed in x direction
+  //float speed.y;           // the confetti moves with some speed in y direction
+  
+  PVector position;
+  PVector speed; 
   
   //constructor: gives values to the variables
   Confetti() { 
@@ -14,36 +17,35 @@ class Confetti {
     
     //random radius and position
     radius = random(10,25);
-    xPos = int(random(radius,width-radius));
-    yPos = int(random(radius,height-radius));
     
+    position = new PVector(int(random(radius,width-radius)),int(random(radius,height-radius)));
+   
     // random speed
-    xSpeed = int(random(-4,4));               // speed in x-direction
-    ySpeed = int(random(-4,4));               // speed in y-direction
+    speed = PVector.random2D().mult(sqrt(20));
   }
     
   void render() {
     noStroke();
     fill(pinkish);
-    ellipse(xPos, yPos, 2*radius, 2*radius);
+    ellipse(position.x, position.y, 2*radius, 2*radius);
   }
   
   void update() {
     //if the confetti reaches the left wall or the right wall, it bounces
-    if ((xPos > width - radius - xSpeed) || (xPos < radius - xSpeed)) {
-      xSpeed = -xSpeed;
+    if ((position.x > width - radius - speed.x) || (position.x < radius - speed.x)) {
+      speed.x = -speed.x;
     }    
     //if the confetti reaches the top wall or the botton wall, it bounces
-    if ((yPos > height - radius - ySpeed) || (yPos < radius - ySpeed)) {
-      ySpeed = -ySpeed;
+    if ((position.y > height - radius - speed.y) || (position.y < radius - speed.y)) {
+      speed.y = -speed.y;
     }
     
-    xPos = xPos + xSpeed;
-    yPos = yPos + ySpeed;
+    position = PVector.add(position,speed);
+    
   }
   
-  void setSpeed(float xSpeed, float ySpeed){
-    this.xSpeed = xSpeed;
-    this.ySpeed = ySpeed;
-  }  
+  //void setSpeed(float sx, float sy){
+  //  this.speed.x = sx;
+  //  this.speed.y = sy;
+  //}  
 }
