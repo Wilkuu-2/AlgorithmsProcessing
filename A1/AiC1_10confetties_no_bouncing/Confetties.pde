@@ -35,7 +35,7 @@ class Confetties {
       // I do not want to create overlapping Confettis, does not look nice
       boolean addThisConfetti = true;
       for (int i = 0; i<generated; i++) {
-        if (dist(confetti[i].xPos, confetti[i].yPos, newCandidate.xPos, newCandidate.yPos) < (confetti[i].radius + newCandidate.radius)) {
+        if (dist(confetti[i].location.x, confetti[i].location.y, newCandidate.location.x, newCandidate.location.y) < (confetti[i].radius + newCandidate.radius)) {
           addThisConfetti = false;
         };
       };

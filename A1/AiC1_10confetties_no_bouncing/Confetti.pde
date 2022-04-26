@@ -1,12 +1,8 @@
 class Confetti {
   
   color pinkish;      // a confetti has a colour
-  float xPos;         // a confetti has an x-position
-  float yPos;         // a confetti has an y-position
   float radius;       // a confetti has a radius;
-  float xSpeed;           // the confetti moves with some speed in x direction
-  float ySpeed;           // the confetti moves with some speed in y direction
-  
+  PVector location, speed;
   //constructor: gives values to the variables
   Confetti() { 
     //random pinkish colour with opacity
@@ -14,36 +10,34 @@ class Confetti {
     
     //random radius and position
     radius = random(10,25);
-    xPos = int(random(radius,width-radius));
-    yPos = int(random(radius,height-radius));
-    
-    // random speed
-    xSpeed = int(random(-4,4));               // speed in x-direction
-    ySpeed = int(random(-4,4));               // speed in y-direction
+
+    location=new PVector (int(random(radius,width-radius)),int(random(radius,height-radius)));
+    speed=new PVector (int(random(-4,4)),int(random(-4,4)));
   }
     
   void render() {
     noStroke();
     fill(pinkish);
-    ellipse(xPos, yPos, 2*radius, 2*radius);
+    ellipse(location.x, location.y, 2*radius, 2*radius);
   }
   
   void update() {
     //if the confetti reaches the left wall or the right wall, it bounces
-    if ((xPos > width - radius - xSpeed) || (xPos < radius - xSpeed)) {
-      xSpeed = -xSpeed;
+    if ((location.x > width - radius - speed.x) || (location.x < radius - speed.x)) {
+      speed.x = -speed.x;
     }    
     //if the confetti reaches the top wall or the botton wall, it bounces
-    if ((yPos > height - radius - ySpeed) || (yPos < radius - ySpeed)) {
-      ySpeed = -ySpeed;
+    if ((location.y > height - radius - speed.y) || (location.y < radius - speed.y)) {
+      speed.y = -speed.y;
     }
-    
-    xPos = xPos + xSpeed;
-    yPos = yPos + ySpeed;
+    location=location.add(speed);
+    //location=location+speed;
+    //xPos = xPos + xSpeed;
+    //yPos = yPos + ySpeed;
   }
   
-  void setSpeed(float xSpeed, float ySpeed){
-    this.xSpeed = xSpeed;
-    this.ySpeed = ySpeed;
+  void setSpeed(PVector speed){
+    this.speed=speed;
+    
   }  
 }
