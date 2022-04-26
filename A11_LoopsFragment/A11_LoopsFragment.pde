@@ -45,7 +45,11 @@ boolean isPalindrome(char[] localWord) {
 
 // this method takes two parameters and has as result a boolean
 boolean containsLetter ( char[] localWord, char searchLetter) {
-  // fill in the whole body of the method
+  for(int i = 0; i < localWord.length; i++) {
+    if(localWord[i] == searchLetter) 
+      return true;
+  }
+  return false;
 }
 
  
