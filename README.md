@@ -7,7 +7,17 @@ Each algorithm has it's own folder, because processing likes it that way.
 
 ## Algorithms
 
-* As of now there are no algorithms here
+* Directory A1 
+  * Some char\[\] algorithms 
+  * Binary to decimal conversion
+  * Summing multiples of numbers
+  * Mutually colliding particles using PVectors
+  * Mutually non-colliding particles using PVectors
+  * More will come shortly
+
+* Directory A2 
+  * Coming soon
+
 
 ## License
 
