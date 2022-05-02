@@ -44,6 +44,8 @@ Class Counter{
 
 }
 ```
+In this example we can see how to call a method. (Uses the Counter class from above)
+
 ```processing
 Counter count;
 color bg = color(0);
@@ -53,12 +55,12 @@ void start(){
 }
 
 void draw(){
-  if(count.checkCounter){
+  if(count.checkCounter){ //Using output of a method that output a value 
     background(255);
   } else{
     background(0);
   }
-  count.countUp();
+  count.countUp(); //Counting up using a method
 }
 
 ```
