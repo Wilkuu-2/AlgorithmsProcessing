@@ -1,8 +1,7 @@
 # Question 1.9
-1. an object is a member of a class, eatch object stores a variable.
-classes is where individual objects are created
+1. An object is a realization of a class, where a class is a blueprint of data and methods that act on this data somehow. 
 
-2. 
+2.  
 
 3. A constructor is a method where the code for initialization of objects of a class lives. 
 
