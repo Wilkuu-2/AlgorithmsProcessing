@@ -12,4 +12,53 @@ PVector position = new PVector(0,0); //Initialized
 
 3. A constructor is a method where the code for initialization of objects of a class lives. 
 
-4. THEY
+4. A method of a class is some code that acts on or using the object of that class. 
+
+Looking at this example one can see a class called `Counter` that counts using one method and checks for a flag on the second. 
+Those methods use the field of the object
+```processing
+Class Counter{
+  int c;
+  int limit;
+  boolean limitReached = false;
+  
+  Counter(int start, int limit){
+    this.c = start;
+    this.limit = limit;
+  }
+  
+  void countUp(int add){
+    c++;
+    if(c >= limit){
+      limitReached = True; 
+      c=0;
+    }
+    
+  boolean checkCounterLimit(){
+    if(limitReached){
+      limitReached = False; 
+      return True; 
+    }
+    return false;
+  }
+
+}
+```
+```processing
+Counter count;
+color bg = color(0);
+
+void start(){
+  count = new Counter(0, 100); // Calling the constructor using the `new` keyword
+}
+
+void draw(){
+  if(count.checkCounter){
+    background(255);
+  } else{
+    background(0);
+  }
+  count.countUp();
+}
+
+```
