@@ -1,4 +1,4 @@
-# Question 1.9
+# Question 1.9 Text part 
 1. An object is a realization of a class, where a class is a blueprint of data and methods that act on this data somehow. 
 
 2. An object variable is a variable for a object of a class, for example a variable named `name` of class `String` holds a `String` object.
@@ -12,10 +12,7 @@ PVector position = new PVector(0,0); //Initialized
 
 3. A constructor is a method where the code for initialization of objects of a class lives. 
 
-4. A method of a class is some code that acts on or using the object of that class. 
-
-Looking at this example one can see a class called `Counter` that counts using one method and checks for a flag on the second. 
-Those methods use the field of the object
+4. A method of a class is some code that acts on or using the object of that class. Looking at this example one can see a class called `Counter` that counts using one method and checks for a flag on the second. Those methods use the field of the object
 ```processing
 Class Counter{
   int c;
@@ -64,3 +61,17 @@ void draw(){
 }
 
 ```
+5. To define an array of objects of a certain class you use the name of the class as the type
+
+```processing
+SomeClass[] someClassArray;
+
+ArrayList<SomeClass> someClassArrayList; 
+```
+#### Pro tip: 
+You can have an array with a mix of any objects, you can use the `Object` class:
+```processing
+Object[] trailMix = {new Peanuts(), new arrayList<Cashew>(), new Salt()};
+```
+
+
