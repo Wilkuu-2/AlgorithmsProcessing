@@ -4,6 +4,7 @@
   Get the highest prime factor from file
   Uses chached primes to save on time 
 
+  Copyright 2022 Jakub Stachurski and Jules Verhagen 
 */
 BufferedReader primefile;
 long[] primes = new long[600];
