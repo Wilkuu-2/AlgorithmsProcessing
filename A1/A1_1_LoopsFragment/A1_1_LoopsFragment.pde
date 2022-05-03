@@ -1,3 +1,7 @@
+/*
+  1.1 Loops fragment 
+*/
+
 // program fragment for assignemt 1.1 of Algorithms in Creative Technology
 
 
@@ -56,7 +60,10 @@ int numberOfEs (char[] localWord) {
 // this method has as result a boolean
 boolean isPalindrome(char[] localWord) {
   boolean result = true;
-  // fill in the loop
+    for(int i = 0; i < floor(localWord.length); i++){
+      if(localWord[i] != localWord[localWord.length - 1 - i])
+        return false;
+    }
   return result;
 }
 
