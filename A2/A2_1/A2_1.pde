@@ -28,7 +28,7 @@ void draw() {
   grid();
 }
 
-
+// makes the grid
 void grid() {
   for ( int j=1; j<=6; j++) {
     line(j*width/6, height, j*width/6, 0);
@@ -41,13 +41,7 @@ void grid() {
 }
 
 
-//void randomN() {
-//  int random;
-//  for ( int i = 0; i <= 6; i++) {
-//    random = (int) random(1, 6);
-//  }
-//}
-
+//makes the pink colums that will shows
 void colum() {
   for (int t=0; t<6; t++) {
     //print("["+ (-colum[t]) + "] ");
@@ -55,7 +49,7 @@ void colum() {
     //println("t is:", t );
   }
 }
-
+// gets a random number fro the array and updates the height of the colum
 void columHeight() {
   for (int i = 0; i < numberRate; i++) {
     if (counter>=1000000) {
@@ -67,4 +61,11 @@ void columHeight() {
       println("counter:" + counter);
     }
   }
+}
+
+
+void mouseClicked() {
+  int random;
+  random = (int) random(1, 6);
+  println("random number is:", random  );
 }
