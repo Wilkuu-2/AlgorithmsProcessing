@@ -1,3 +1,11 @@
+/*
+  1.6 Binary loops
+  
+  Using 3 nested loops get all binary numbers that fit in 3 bits
+  
+  Copyright 2022 Jakub Stachurski and Jules Verhagen
+*/
+
 void draw() {
 
   char [] bit={'0', '1'};
