@@ -45,8 +45,10 @@ class Confetties {
                          
        PVector c1SpeedTemp = PVector.sub(c1.speed.copy(),c2Speed.copy());
        
+       //Invert the centers vector, since we are swithcing to the other confetti
        centersNorm = PVector.mult(centersNorm,-1f);
        centers = PVector.mult(centers,-1f);
+       
        PVector c1Speed = PVector.mult(centersNorm,
                          PVector.dot(c2.speed.copy(),centers.copy()));
                          
