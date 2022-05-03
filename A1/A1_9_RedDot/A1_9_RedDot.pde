@@ -29,4 +29,5 @@ void draw() {
     d.display();
   for(RedDot d: dots)
     d.move();
+    noLoop();
 }

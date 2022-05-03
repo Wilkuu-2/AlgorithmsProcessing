@@ -1,5 +1,19 @@
-// program fragment for assignemt 1.1 of Algorithms in Creative Technology
-
+/*
+  1.1 loop fragmants
+  "
+      For the array of characters below write methods that execute the descriptions of 1.1.1.-1.1.5.
+      
+   1.1.1.  writes the content of the array on the Processing window, letter by letter 
+   1.1.2.  writes the content of the array on the Processing window, backwards order, i.e. starting with the last 
+   1.1.3.  counts how many occurrences of the letter ‘E’ are contained in the array 
+   1.1.4 decides whether the letter 'O' is contained in the array. 
+   1.1.5.  decides whether the array form a palindrome, i.e. reading from beginning gives the same “word” as reading from the end. An example for a palindrome is “ANNA”. 
+           For this exercise do not use the reverse method from Java - the idea is that you find an 
+           efficient way to decide that 
+           "  from :(https://canvas.utwente.nl/courses/10160/pages/planning-and-material?module_item_id=320493)
+           
+ Copyright 2022 Jakub Stachurski and Jules Verhagen
+ */
 
 void draw() {
   // this is an array of characters
