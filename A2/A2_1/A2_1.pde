@@ -16,7 +16,7 @@ void setup() {
 
 void draw() {
 
-  randomN();
+  //randomN();
 
   columHeight();
   colum();
@@ -32,17 +32,18 @@ void grid() {
 }
 
 
-void randomN() {
-  int random;
-  for ( int i = 0; i <= 6; i++) {
-    random = (int) random(1, 6);
-  }
-}
+//void randomN() {
+//  int random;
+//  for ( int i = 0; i <= 6; i++) {
+//    random = (int) random(1, 6);
+//  }
+//}
 
 void colum() {
   for (int t=0; t<6; t++) {
-    rect(0+t*width/6, height, width/6, colum[t]/6);
-    //println("t is:", t );
+    
+    rect(0+t*width/6, height, width/6, colum[t]/log(counter));
+    //println("log",log(counter));
   }
 }
 
