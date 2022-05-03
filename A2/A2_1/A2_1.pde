@@ -1,4 +1,4 @@
-
+import java.lang.Math;
 int[] colum = new int[6];
 int counter=0;
 
@@ -28,6 +28,10 @@ void grid() {
   for ( int j=1; j<=6; j++) {
     line(j*width/6, height, j*width/6, 0);
   }
+  for ( int i=1; i < 1000000; i+=pow(10,floor(log(i)/log(10)))){
+    float h = height-(log(i)/log(10)*150);
+    line(0,h,width,h);
+  }
   fill(255, 60, 120);
 }
 
@@ -41,9 +45,9 @@ void grid() {
 
 void colum() {
   for (int t=0; t<6; t++) {
-    
-    rect(0+t*width/6, height, width/6, colum[t]/log(counter));
-    //println("log",log(counter));
+    print("["+ (-colum[t]) + "] ");
+    rect(0+t*width/6, height, width/6, log(-colum[t])/log(10f)*-150);
+    //println("t is:", t );
   }
 }
 
@@ -55,7 +59,7 @@ void columHeight() {
     int count=(int)random(0, 6);
     colum[count]-=1;
     counter+=1;
-    println("counter: ", counter);
+    println("counter:" + counter);
   }
  
 }
