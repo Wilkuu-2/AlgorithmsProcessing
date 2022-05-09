@@ -10,7 +10,7 @@
 
 
 // -- INIT 
-void start(){
+void setup(){
  
 }
 
