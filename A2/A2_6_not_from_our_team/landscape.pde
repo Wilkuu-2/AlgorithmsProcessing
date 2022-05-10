@@ -17,7 +17,7 @@ class landscape {
     //maak zelf een naam aan om alle variables ook zichtbaar te maken. dit is de method. je add een bahaviour
     
     fill(0, 255, 0);
-    rect(x, height, 1, -f);
-    x=x-10;
+    rect(x, height, f, -f);
+    x-=10;
   }
 }
