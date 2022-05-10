@@ -9,22 +9,23 @@
  Copyright 2022 Jakub Stachurski and Jules Verhagen
  
  */
-Landscape land;
+Flame flame;
 
 
 
 
 void setup() {
-  size(640, 360);
-  
+  size(360,640);
+  //frameRate(10);
   noStroke();
 
-  land= new Landscape();
+  flame= new Flame();
 }
 
 void draw() {
-  fill(0,0,255, 100);
-  rect(0, 0, width, height);
-  land.heightUpdate();
-  land.carModdle();
+  background(0);
+  //fill(0,0,255);
+  //rect(0, 0, width, height);
+  flame.heightUpdate();
+ 
 }
