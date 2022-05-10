@@ -10,6 +10,7 @@
 
 final static float HORIZON_Y = 150;
 final color MOUNTAIN_COLOR = color(60,140,70);
+
 float landSpeed = 0.4;
 float carOffset = 0; 
 
@@ -18,6 +19,7 @@ Landscape land;
 // -- INIT 
 void setup(){
   size(1000,500);
+  
   land = new Landscape(new PVector(0,HORIZON_Y),new PVector(width, height-HORIZON_Y*2), MOUNTAIN_COLOR);
   noStroke();
 }
@@ -38,6 +40,7 @@ void draw(){
   
 }
 
+// -- Make car
 void displayCar(){
   pushMatrix();
     translate(width/2 + carOffset,height-HORIZON_Y);
@@ -56,6 +59,7 @@ void displayCar(){
   
 }
 
+// -- Controls 
 void keyReleased(){
   if(keyCode == LEFT || keyCode == RIGHT)
     landSpeed = 0.4; 
