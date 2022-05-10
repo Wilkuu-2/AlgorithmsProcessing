@@ -1,33 +1,37 @@
+/*
+  assingment 2.4 useing the Gaussian distribution create a paint splat 
+    
+    Copyright 2022 Jakub Stachurski and Jules Verhagen 
+*/
 
-int num=560;
-float[] disctanceX = new float[num];
-float[] disctanceY = new float[num];
+
+int num=560; // amount of circle you want 
+PVector[] location = new PVector[num];
 float[] size = new float[num];
 void setup() {
   size(800, 800);
-  for (int i = 0; i < disctanceX.length; i++) {
-    disctanceX[i] = int(randomGaussian() * 80);
-  }
-  for (int i = 0; i < disctanceY.length; i++) {
-    disctanceY[i] = int(randomGaussian() * 80);
-  }
-  for (int i = 0; i < size.length; i++) {
-    size[i] = int(randomGaussian() * 10);
-  }
 }
 
 void draw() {
   noStroke();
-  background(204);
-  
   translate(width/2, width/2);
+}
 
-  for (int i = 0; i < disctanceX.length; i++) {
-    fill(0,0,255);
-    rotate(TWO_PI/disctanceX.length);
-    
-    float distX = abs(disctanceX[i]);
-    float distY = abs(disctanceY[i]);
+void mouseClicked() {
+  background(204);
+  for (int i = 0; i < num; i++) {
+    location[i] = new PVector();
+    location[i].y= int(randomGaussian() * 80);
+    size[i] = int(randomGaussian() * 10);
+    location[i].x = int(randomGaussian() * 80);
+  }
+
+  for (int i = 0; i < location.length; i++) {
+    fill(0, 0, 255);
+    rotate(TWO_PI/location.length);
+
+    float distX = abs(location[i].x);
+    float distY = abs(location[i].y);
     float sizeP = abs(size[i]);
     circle(distX, distY, sizeP);
   }
