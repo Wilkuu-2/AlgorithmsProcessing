@@ -1,3 +1,9 @@
+/*
+  Random numbers 2.1
+    
+    Copyright 2022 Jakub Stachurski and Jules Verhagen 
+*/
+
 import java.util.Random;
 
 int[] colum = new int[6];
