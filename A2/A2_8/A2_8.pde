@@ -10,7 +10,7 @@
 float noiseScale = 0.3; 
 float gridSize = 50; 
 float gridHeight = 300; 
-PVector size = new PVector(60,60);
+PVector size = new PVector(100,100);
 
 // -- INIT 
 void setup(){
