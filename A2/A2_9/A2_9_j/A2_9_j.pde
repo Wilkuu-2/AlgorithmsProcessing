@@ -4,7 +4,7 @@
  * Using 1D Perlin Noise to assign location.
  part of code from: https://processing.org/examples/noise1d.html
  
- assingment 2.6 making a moveble background 
+ assingment 2.9 making a flame move  
  
  Copyright 2022 Jakub Stachurski and Jules Verhagen
  

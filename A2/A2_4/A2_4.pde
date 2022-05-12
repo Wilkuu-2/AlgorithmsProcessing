@@ -8,6 +8,7 @@
 int num=560; // amount of circle you want 
 PVector[] location = new PVector[num];
 float[] size = new float[num];
+float mean=width/2;
 void setup() {
   size(800, 800);
 }
@@ -21,9 +22,9 @@ void mouseClicked() {
   background(204);
   for (int i = 0; i < num; i++) {
     location[i] = new PVector();
-    location[i].y= int(randomGaussian() * 80);
+    location[i].y= (int(randomGaussian() * 80)+mean);
     size[i] = int(randomGaussian() * 10);
-    location[i].x = int(randomGaussian() * 80);
+    location[i].x = (int(randomGaussian() * 80)+mean);
   }
 
   for (int i = 0; i < location.length; i++) {

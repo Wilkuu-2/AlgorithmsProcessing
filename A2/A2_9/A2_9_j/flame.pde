@@ -18,19 +18,15 @@ class Flame {
 
 
 
-
-    //for (int i=0; i<num; i++) { //Iterate over array
-
     float y= noise(yoffset)*height;
-    float x= noise(xoffset)*height;
+    float x= noise(xoffset)*width;
    
     stroke(50);
     xoffset +=  increment ;
     yoffset +=  increment ;
     stroke(255);
     fill(255, 142, 0);
-    //circle(int(noise(wind)*height/5), (i+3)+200, 90-log(height-i));
-    bezier(x, y, 60, 600, 370, 600, x, y);
+    bezier(x, y, 60, 600, 370, 600, x, y); //flame modlel
     //}
 println(xoffset);
     //xoffset += 0.001;
