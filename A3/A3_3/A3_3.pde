@@ -6,20 +6,20 @@
 */
 
 // -- CONSTANTS 
-int num=2500;
+int num=2000;
 Rain[] rain= new Rain[num];
 
 void setup() {
   size (600, 600);
 
   for (int i=0; i<rain.length; i++) { //makes a lot of rain drops 
-    rain[i]= new Rain(2);
+    rain[i]= new Rain(4);
   }
 }
 
 
 void draw() {
-  fill(155, 100);
+  fill(155, 155);
   rect(0, 0, width, height);
   for (int i=0; i<rain.length; i++) {
     rain[i].rain();
