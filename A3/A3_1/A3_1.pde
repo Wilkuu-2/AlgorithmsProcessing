@@ -48,7 +48,7 @@ println(counter);
 println(velocity.x);
   // Bounce off edges
   if ((location.x > width) || (location.x < 0)) {
-    velocity.x = velocity.x * -1;
+    velocity.x = velocity.x * -0.6;
     
   }
   if (location.y > height) {
