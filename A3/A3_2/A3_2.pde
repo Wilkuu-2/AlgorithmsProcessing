@@ -11,9 +11,9 @@ final static float GRAVITY  = 1.5f;
 final static PVector VA_GRAVITY = new PVector(0,GRAVITY);
 
 final static boolean DELETE_ON_OUT = true; 
-final static float PROJ_DENSITY = 0.01;  
-final static float FRICTION_MULT = 0.01; 
-final static float CATAPULT_SPEED_MULT = 0.3; 
+final static float PROJ_DENSITY = 0.1;  
+final static float FRICTION_MULT = 0.4; 
+final static float CATAPULT_SPEED_MULT = 0.4; 
 
 
 // -- GLOBALS 
@@ -36,9 +36,7 @@ void draw(){
   cat.update();
   cat.display();
   
-  // This vector is updated andused for spawning the projectiles
-  mousePos.x = mouseX;
-  mousePos.y = mouseY;
+
   
   if(mousePressed && PVector.dist(cat.VPos,mousePos) > 40){
     stroke(color(10,10,100));
@@ -59,6 +57,17 @@ void draw(){
 } 
 
 // -- Callbacks
+void mouseMoved(){
+      // This vector is updated andused for spawning the projectiles
+  mousePos.x = mouseX;
+  mousePos.y = mouseY;
+}
+
+void mouseDragged(){
+        // This vector is updated andused for spawning the projectiles
+  mousePos.x = mouseX;
+  mousePos.y = mouseY;
+}
 
 void mouseReleased(){
   if(PVector.dist(cat.VPos,mousePos) > 40){

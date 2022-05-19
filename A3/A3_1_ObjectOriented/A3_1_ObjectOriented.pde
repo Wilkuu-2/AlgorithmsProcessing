@@ -1,6 +1,6 @@
 /*
   3.1
-    Sample text
+    A projectile with a constant force, gravity and friction applied to it
     
     Copyright 2022 Jakub Stachurski and Jules Verhagen 
 */
