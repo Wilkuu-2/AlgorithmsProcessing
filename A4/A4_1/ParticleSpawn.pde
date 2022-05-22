@@ -7,7 +7,7 @@
 
 
 
-final static PVector GRAVITY = new PVector(0,-0.5);
+
 
 class ParticleSpawner{
   PVector vPos;
@@ -53,6 +53,9 @@ class ParticleSpawner{
                                  ));
     }
   }
+   int getParticleCount(){
+     return particles.size();
+   }
    void logParticleCount(){
      println("[PARTICLE] Particles: ", particles.size());
    }
