@@ -5,10 +5,6 @@
     Copyright 2022 Jakub Stachurski and Jules Verhagen 
 */
 
-final static float PART_DENSITY = 1;
-final static float RADIUS_FALLOFF = 0.94;
-final static float FRICTION_COEFF = 0.5;
-
 class Particle{
   PVector vPos;
   PVector vVel;
@@ -53,6 +49,8 @@ class Particle{
     vPos.add(vVel); // Speed 
     
     radius *= RADIUS_FALLOFF; // Particle becomes smaller the longer it lives
+    colorMode(HSB, 360, 100, 100);
+    partColor = color(hue(partColor),saturation(partColor)*PART_SATURATION_FALLOFF,brightness(partColor)*PART_BRIGHTNESS_FALLOFF);
     
     deleteMe = deleteMe || radius < 1; // Delete particle if radius is less than 1; 
     deleteMe = deleteMe || vPos.x > width || vPos.x < 0 || vPos.y > height || vPos.y < 0; //Delete particle if it's out of bounds 
