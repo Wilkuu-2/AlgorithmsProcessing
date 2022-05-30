@@ -40,11 +40,12 @@ class Particle{
   }
   
   void update(){
-    
     // -- Physics 
     vVel.add(vAcc); //Constant acceleration 
     
-    vVel.sub(vVel.copy().mult(vVel.mag()).mult(FRICTION_COEFF).div(pow(radius,2) * PI * PART_DENSITY)); //Friction
+    vVel.sub(vVel.copy().mult(vVel.mag())
+                        .mult(FRICTION_COEFF)
+                        .div(pow(radius,2) * PI * PART_DENSITY)); //Friction
     
     vPos.add(vVel); // Speed 
     
@@ -59,20 +60,26 @@ class Particle{
   }
   
   void display(){
-    pushMatrix();
+    // -- Matrix with the position and rotation of the particle 
+    pushMatrix(); 
       translate(vPos.x,vPos.y);
       rotate(rot); 
+      
       noStroke();
       fill(partColor);
-      beginShape();
-        for(int i = 0; i < 4; i++)
-          putVertex(i);
-      endShape(QUAD);
+      //  -- Making a quad using random vertices -- Best looking, worst performance 30-40fps @ 10k Particles on integrated GPU 
+      //beginShape();
+      //  for(int i = 0; i < 4; i++)
+      //    putVertex(i);
+      //endShape(QUAD);
+      rect(-radius,radius,radius*2,radius*2); //Rectangle alternative -- Best Performance 
+      //circle(0,0,radius*2);                   //Circle alternative    -- Good Performance 
       
-    popMatrix();
+    popMatrix(); //END: Matrix with the position and rotation of the particle 
     
   }
   
+  // Helper method for 
   void putVertex(int v){
     PVector vert = vertices[v].copy().mult(radius);
     vertex(vert.x,vert.y);

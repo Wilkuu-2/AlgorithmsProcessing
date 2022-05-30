@@ -15,22 +15,25 @@ class ParticleSpawner{
   
   ParticleSpawner(PVector pos){
     vPos = pos.copy(); 
-    particles = new ArrayList<Particle>(100); //Allocate 100 particles
+    particles = new ArrayList<Particle>(2000); //Allocate 2000 particles in the beginning 
   }
   
   void setPos(PVector newPos){
     vPos = newPos.copy();
   }
-
+  
+  // -- State updated 
   void update(){
-    for(Particle p : particles)
+    // Pass update to particles
+    for(Particle p : particles) 
       p.update();
     
-    particles.removeIf( p -> p.deleteMe); //Autodelete dead particles 
+    particles.removeIf( p -> p.deleteMe); //Autodelete dead particles using a predicate/lambda 
   
   }
   
   void display(){
+    // Pass draw call to particles 
     for(Particle p : particles)
       p.display(); 
   }

@@ -1,4 +1,10 @@
-
+/*
+  Torch
+     An interactible container class for the particle spawer
+     
+     
+   Copyright 2022 Jakub Stachurski and Jules Verhagen 
+*/
 
 class Torch{
   static final float X_MARGIN = 50; 
@@ -21,10 +27,12 @@ class Torch{
   }
   
   void display(){
-    pushMatrix();
+    // -- Matrix with the position of the torch
+    pushMatrix(); 
       colorMode(RGB,255,255,255);
       translate(vPos.x,vPos.y);
       
+      //Base 
       stroke(color(200,200,200,150));
       strokeWeight(1);
       fill(color(170,140,30));
@@ -35,6 +43,7 @@ class Torch{
         vertex(-30,230);
       endShape(CLOSE);
       
+      //The burning bit 
       noStroke(); 
       fill(color(200,50,40));
        beginShape();
@@ -44,14 +53,17 @@ class Torch{
         vertex(-40,-10);
       endShape(CLOSE);
       
-    popMatrix();
+    popMatrix(); //END: Matrix with the position of the torch
     
+    // Particles 
     spawner.display();
     
+    // Halo 
     noStroke(); 
     fill(color(255,255,120,80));
     circle(vPos.x,vPos.y+SPAWN_Y_OFFSET,300+noise(0,noiseTOff)*100+sqrt(spawner.getParticleCount())*6);
     
+    // Particle counter 
     if(logParticles){
         fill(255,255,255);
         textSize(13);

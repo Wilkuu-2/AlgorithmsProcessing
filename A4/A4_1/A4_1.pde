@@ -8,7 +8,7 @@
 // -- CONSTANTS 
 // Particle constants 
 final static float PART_DENSITY = 1;
-final static float RADIUS_FALLOFF = 0.98;
+final static float RADIUS_FALLOFF = 0.97;
 final static float FRICTION_COEFF = 0.5;
 final static float PART_SATURATION_FALLOFF = 0.96;
 final static float PART_BRIGHTNESS_FALLOFF = 0.96;
@@ -19,7 +19,7 @@ final static float SPAWN_DISTANCE = 100;
 final static float SPAWN_SPEED_MIN = 5;
 final static float SPAWN_SPEED_MAX = 10;
 final static float SPAWN_ACCELERATION_MIN = 0.001;
-final static float SPAWN_ACCELERATION_MAX = 0.0015;
+final static float SPAWN_ACCELERATION_MAX = 0.015;
 final static float SPAWN_ROT_VEL_FACTOR = 0.1;
 final static float SPAWN_RADIUS_MIN = 10;
 final static float SPAWN_RADIUS_MAX = 30;
