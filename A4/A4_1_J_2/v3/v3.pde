@@ -19,16 +19,13 @@ void setup() {
 }
 
 void draw() {
-  //background(0);
-  //for (ParticleSystem ps : systems) {
-  //  ps.run();
-  //  ps.addParticle();
-  //}
+  background(50);
   obj.update();
   obj.movement();
   obj.display();
 }
 
 void mousePressed() {
-  //systems.add(new ParticleSystem(1, new PVector(mouseX, mouseY)));
+obj.trigger();
+
 }

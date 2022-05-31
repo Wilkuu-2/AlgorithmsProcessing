@@ -3,42 +3,38 @@
 class Particle {
   PVector position;
   PVector velocity;
-  
+
   float lifespan;
-  int r,g,b;
+  int r, g, b; 
+  float size;
 
   Particle(PVector l) {
-    
-    velocity = new PVector(random(-1, 1), random(-1,1));
+
+    velocity = new PVector(random(-1, 1), random(-1, 1));
     position = l.copy();
-    lifespan = 255.0;
-    r=int(random(255));
-     g=int(random(255));
+    lifespan = 255;
+    r=int(random(255)); // random color variables
+    g=int(random(255));
     b=int(random(255));
+    size= random(1,8);
   }
 
+  void update() { // adds the speed to the location of the particle
+    position.add(velocity);
+    lifespan -= 2.0;
+  }
   void run() {
     update();
     display();
   }
 
-  // Method to update position
-  void update() {
-    
-    position.add(velocity);
-    lifespan -= 2.0;
-  }
-
-  // Method to display
   void display() {
-    //stroke(255, lifespan);
     noStroke();
-    fill(r,g,b, lifespan);
-    ellipse(position.x, position.y, 8, 8);
+    fill(r, g, b, lifespan);
+    ellipse(position.x, position.y, size, size); // creates an ellipse of the particle
   }
 
-  // Is the particle still useful?
-  boolean isDead() {
-    return (lifespan < 0.0);
+  boolean spanTime() {
+    return (lifespan < 0);
   }
 }
