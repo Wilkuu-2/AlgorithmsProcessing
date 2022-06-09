@@ -9,12 +9,14 @@ class Boid {
   float maxforce;    // Maximum steering force
   float maxspeed;    // Maximum speed
   float red, green, blue;
+  PImage shrimp;
 
-    Boid(float x, float y) {
+  Boid(float x, float y) {
     acceleration = new PVector(0, 0);
-    blue= random(0,255);
-    red=random(0,255);
-    green=random(0,255);
+    blue= random(0, 255);
+    red=random(0, 255);
+    green=random(0, 255);
+    shrimp =loadImage ("shrimp.b.png");
 
     // This is a new PVector method not yet implemented in JS
     // velocity = PVector.random2D();
@@ -89,13 +91,14 @@ class Boid {
     // Draw a triangle rotated in the direction of velocity
     float theta = velocity.heading2D() + radians(90);
     // heading2D() above is now heading() but leaving old syntax until Processing.js catches up
-    
+
     fill(200, 100);
-    stroke(red,green,blue);
+    stroke(red, green, blue);
     pushMatrix();
     translate(position.x, position.y);
     rotate(theta);
-        beginShape(TRIANGLES);
+    //image(shrimp,r,r);
+    beginShape(TRIANGLES);
     vertex(0, -r);
     vertex(-r, r);
     vertex(r, r);
@@ -120,15 +123,48 @@ class Boid {
     noStroke();
     circle(0, 1, r);
     endShape();
+
     popMatrix();
   }
 
   // Wraparound
+
   void borders() {
-    if (position.x < -r) position.x = width+r;
-    if (position.y < -r) position.y = height+r;
-    if (position.x > width+r) position.x = -r;
-    if (position.y > height+r) position.y = -r;
+    //translate(width/2,height/2);
+    PVector orig;
+    orig = new PVector(0, 0);
+    float radius=width/2;
+    //radius*=0.1;
+
+    PVector border;
+    //----------------------rectangle border-----------
+
+    //border = new PVector(width/2, height/2);
+    //if (position.x < 50 ) border.add(-1, 0);
+    //if (position.y < 50) border.add(0, -1);
+    //if (position.x > width+50) border.add(1, 0);
+    //if (position.y > height+50) border.add(0, 1);
+
+
+    //----------------------circle border----------------------------------
+
+    border = new PVector(0, 0);
+    border= position;
+    border.add(velocity);
+    if (border.dist(orig) > radius-width/20 ) {
+      PVector n=position.copy();
+     n.normalize();
+     n.mult(2*n.dot(velocity));
+     velocity.sub(n);
+
+    }
+    //--------------------------------------------------------
+    //if (position.y < radius) border.add(0,-1);
+    //if (position.x > width-radius) border.add(1,0);
+    //if (position.y > height-radius) border.add(0,1);
+    //border.normalize();
+    //if (border.x!=0||border.y!=0) {
+    //}
   }
 
   // Separation
@@ -141,7 +177,7 @@ class Boid {
     for (Boid other : boids) {
       float d = PVector.dist(position, other.position);
       // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
-      if ((d > 0) && (d < desiredseparation)) {
+      if ((d > 5) && (d < desiredseparation)) {
         // Calculate vector pointing away from neighbor
         PVector diff = PVector.sub(position, other.position);
         diff.normalize();
@@ -151,12 +187,12 @@ class Boid {
       }
     }
     // Average -- divide by how many
-    if (count > 0) {
+    if (count > 5) {
       steer.div((float)count);
     }
 
     // As long as the vector is greater than 0
-    if (steer.mag() > 0) {
+    if (steer.mag() >5) {
       // First two lines of code below could be condensed with new PVector setMag() method
       // Not using this method until Processing.js catches up
       // steer.setMag(maxspeed);
@@ -178,12 +214,12 @@ class Boid {
     int count = 0;
     for (Boid other : boids) {
       float d = PVector.dist(position, other.position);
-      if ((d > 0) && (d < neighbordist)) {
+      if ((d > 5) && (d < neighbordist)) {
         sum.add(other.velocity);
         count++;
       }
     }
-    if (count > 0) {
+    if (count > 5) {
       sum.div((float)count);
       // First two lines of code below could be condensed with new PVector setMag() method
       // Not using this method until Processing.js catches up
@@ -195,8 +231,7 @@ class Boid {
       PVector steer = PVector.sub(sum, velocity);
       steer.limit(maxforce);
       return steer;
-    } 
-    else {
+    } else {
       return new PVector(0, 0);
     }
   }
@@ -217,8 +252,7 @@ class Boid {
     if (count > 0) {
       sum.div(count);
       return seek(sum);  // Steer towards the position
-    } 
-    else {
+    } else {
       return new PVector(0, 0);
     }
   }
