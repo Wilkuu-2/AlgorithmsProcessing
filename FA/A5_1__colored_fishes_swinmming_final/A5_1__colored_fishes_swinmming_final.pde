@@ -1,4 +1,10 @@
-// assignment 5_1
+
+/*
+  5_1 
+    flock of fishes 
+    
+    Copyright 2022 Jakub Stachurski and Jules Verhagen 
+*/
 Flock flock;
 
 void setup() {
@@ -15,9 +21,7 @@ void draw() {
   // if you choose to make a rectangle you will have to change the spawn point of the Boid 
   // and the mouse press
     background(50);
-      noFill();
-    stroke(2);
-   ellipse(0,0,width,height);
+
 
   flock.run();
 }
@@ -25,7 +29,7 @@ void draw() {
 // Add a new boid into the System
 void mouseDragged() {
   flock.addBoid(new Boid(mouseX-width/2,mouseY-height/2));
- 
+
 }
 void mousePressed() {
   flock.addBoid(new Boid(mouseX-width/2,mouseY-height/2));
