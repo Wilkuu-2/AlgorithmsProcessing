@@ -43,10 +43,10 @@ class Boid {
         maxspeed = 1.75;
       } else
         if (20<counter && counter<30) {
-          team= 5;
-          position.x= random(-width/2, width/2);
-          position.y= random(-height/2, height/2);
-          r = 30f;
+          //team= 5;
+          //position.x= random(-width/2, width/2);
+          //position.y= random(-height/2, height/2);
+          //r = 30f;
         }
     println(team);
   }
@@ -64,6 +64,7 @@ class Boid {
   void applyForce(PVector force) {
     // We could add mass here if we want A = F / M
     acceleration.add(force);
+    
   }
 
   // We accumulate a new acceleration each time based on three rules
@@ -105,6 +106,8 @@ class Boid {
     position.add(velocity);
     // Reset accelertion to 0 each cycle
     acceleration.mult(0);
+    
+    velocity.y*=0.9;
   }
 
   // A method that calculates and applies a steering force towards a target
@@ -287,35 +290,35 @@ class Boid {
 
     //----------------------circle border----------------------------------
 
-    border = new PVector(0, 0);
-    border= position;
-    border.add(velocity);
-    if (border.dist(orig) > radius-width/20 ) {
-      PVector n=position.copy();
-      n.normalize();
+    //border = new PVector(0, 0);
+    //border= position;
+    //border.add(velocity);
+    //if (border.dist(orig) > radius-width/20 ) {
+    //  PVector n=position.copy();
+    //  n.normalize();
 
-      n.mult(2*n.dot(velocity));
-      n.mult((2)^width/25);
-      velocity.sub(n);
-    }
+    //  n.mult(2*n.dot(velocity));
+    //  n.mult((2)^width/25);
+    //  velocity.sub(n);
+    //}
 
 
 
     //----------------------rectangle border-----------
-    //int distance=50;
-    //if (position.x < -width/2+distance||position.x>width/2-distance ) {
-    //  velocity.x*=-2*width/25;
-    //}
-    //if (position.y<-height/2+distance||position.y>height/2-distance) {
-    //  velocity.y*=-2*width/25;
-    //}
-    //PVector normal;
-    //normal= new PVector(0, 0);
+    int distance=50;
+    if (position.x < -width/2+distance||position.x>width/2-distance ) {
+      velocity.x*=-2*width/25;
+    }
+    if (position.y<-height/2+distance||position.y>height/2-distance) {
+      velocity.y*=-2*width/25;
+    }
+    PVector normal;
+    normal= new PVector(0, 0);
 
-    //normal.normalize();
-    //if (normal.x!=0||normal.y!=0) {
-    //  velocity= velocity.sub(normal.mult(2*normal.dot(normal)));
-    //}
+    normal.normalize();
+    if (normal.x!=0||normal.y!=0) {
+      velocity= velocity.sub(normal.mult(2*normal.dot(normal)));
+    }
     //--------------------------------------------------------
   }
 
