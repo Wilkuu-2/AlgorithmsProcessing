@@ -152,4 +152,9 @@ class SpringElement{
     translate(0,-radius*2);
   }
   
+  
+  void windEvent(){
+    float mult = (width/2f - mouseX) / width * 0.001f ;
+    rVel += mult /windForceMult / branchMass;
+  }
 }
