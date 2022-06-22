@@ -1,13 +1,17 @@
 Enviroment env;
 
-
-void setup(){
-fullScreen();
-env = new Enviroment();
+PImage office;
+void setup() {
+ //fullScreen();
+ size(1000,1000);
+  env = new Enviroment();
+  office=loadImage("office.1.png");
 }
 
-void draw(){
-  background(0);
-  env.display();
+void draw() {
+  
+  image(office,0,0);
+  office.resize(width, height);
 
+  env.display();
 }
