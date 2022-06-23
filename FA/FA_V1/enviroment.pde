@@ -1,7 +1,9 @@
 class Enviroment {
 
-  int num=2000;
-  PVector[]sand=new PVector[num];
+  int sandCount=2000;
+  float sandDensity= 2.1;
+  PVector[]sand=new PVector[sandCount];
+  color[] sandColors = {#AFAE9F, #DED99A, #EEE357,#CFCE6F,#E8DC3D,#DED99A};
   PImage vase;
 
   Enviroment( ) {
@@ -20,9 +22,6 @@ class Enviroment {
   void display() {
     objects();
   }
-
-
-
   void objects() {
     noStroke();
     //---------------aquarium glime------------------
@@ -30,25 +29,25 @@ class Enviroment {
     rect(width/20, height/20, width-width*2/20, height-height*2/20, 10);
 
     //----------------sand---------------------
-    for (int i=0; i<sand.length; i++) {
-      if (sand[i].z==1) {
-        fill(#AFAE9F);
+    PVector sandPos = new PVector(width/15, height-height/6);
+    PVector sandSize = new PVector(width-width/7.5, height * (1f/6f - 1f/13f));
+    
+    for (float i=0; i<sandSize.x; i += sandDensity) {
+      for (float j=0; j<sandSize.y; j += sandDensity) {
+        float z = noise(i*0.1f,j*0.2f) * (sandColors.length -1) ;
+
+        fill(sandColors[round(z)]);
+        circle(sandPos.x + i + noise(0,i,j) * sandDensity
+              ,sandPos.y + j + noise(0,j,i) * sandDensity
+              , width/200);
       }
-      if (sand[i].z==2) {
-        fill(#DED99A);
-      }
-      if (sand[i].z==3) {
-        fill(#EEE357);
-      }
-      if (sand[i].z==4) {
-        fill(#E8DC3D);
-      }
-      circle(sand[i].x, sand[i].y, width/200);
     }
 
+
     //------------------vase-------------
-    vase.resize(width/6, width/6);
-    image(vase, width/10, height-height/2.9);
+    float ARatio = vase.width/ vase.height;
+
+    image(vase, width/10, height-height/3.2, ARatio * height/4, height/4);
     //----------------aquarium glass--------------
     fill(125, 191, 255, 90);
     rect(width/16, height/20, width-width*2/16, height-height*2/16, 10);

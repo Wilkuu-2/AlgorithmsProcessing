@@ -8,7 +8,7 @@ PVector locationB;
   
   void display(){
   
-  circle(locationB.x,location.y,locationB.z);
+  circle(locationB.x,locationB.y,locationB.z);
   }
   
 }
