@@ -1,7 +1,7 @@
 class Enviroment {
 
   int sandCount=2000;
-  float sandDensity= 2.1;
+  float sandDensity= 0.5;
   PVector[]sand=new PVector[sandCount];
   color[] sandColors = {#AFAE9F, #DED99A, #EEE357,#CFCE6F,#E8DC3D,#DED99A};
   PImage vase;
@@ -31,17 +31,20 @@ class Enviroment {
     //----------------sand---------------------
     PVector sandPos = new PVector(width/15, height-height/6);
     PVector sandSize = new PVector(width-width/7.5, height * (1f/6f - 1f/13f));
-    
+    loadPixels();
     for (float i=0; i<sandSize.x; i += sandDensity) {
       for (float j=0; j<sandSize.y; j += sandDensity) {
         float z = noise(i*0.1f,j*0.2f) * (sandColors.length -1) ;
 
         fill(sandColors[round(z)]);
-        circle(sandPos.x + i + noise(0,i,j) * sandDensity
-              ,sandPos.y + j + noise(0,j,i) * sandDensity
-              , width/200);
+        set(round(sandPos.x + i + noise(0,i,j) * sandDensity),
+            round(sandPos.y + j + noise(0,j,i) * sandDensity),
+            sandColors[round(z)]);
+  
       }
     }
+    
+    updatePixels();
 
 
     //------------------vase-------------
