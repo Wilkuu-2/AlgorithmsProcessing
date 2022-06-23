@@ -27,7 +27,7 @@ final static float CATAPULT_FORCE_MULT = 200;
 
 // -- GLOBALS
 
-SlingshotAndWall cat;
+SlingshotAndWall sling;
 PVector mousePos = new PVector(mouseX, mouseY);
 
 
@@ -39,7 +39,7 @@ void setup() {
     color(150, 150, 150),
     color(100, 10, 10));
 
-  cat = new SlingshotAndWall(300, height/2, wall);
+  sling = new SlingshotAndWall(300, height/2, wall);
 }
 
 
@@ -47,13 +47,13 @@ void setup() {
 void draw() {
   background(255);
 
-  cat.update();
-  cat.display();
+  sling.update();
+  sling.display();
 
 
   // Projectile on the mouse
-  if (mousePressed && PVector.dist(cat.VPos, mousePos) > 40) {
-    PVector slingPos = cat.getPosition();
+  if (mousePressed && PVector.dist(sling.VPos, mousePos) > 40) {
+    PVector slingPos = sling.getPosition();
     stroke(color(10, 10, 100));
     strokeWeight(4);
     line(slingPos.x, slingPos.y, mouseX, mouseY);
@@ -65,7 +65,7 @@ void draw() {
   }
 
   fill(color(10, 100, 20));
-  circle(cat.VPos.x, cat.VPos.y, 20);
+  circle(sling.VPos.x, sling.VPos.y, 20);
 }
 
 // -- Callbacks
@@ -82,14 +82,14 @@ void mouseDragged() {
  }
 
 void mouseReleased() {
-  if (PVector.dist(cat.VPos, mousePos) > 40) 
-    cat.spawn(mousePos);
+  if (PVector.dist(sling.VPos, mousePos) > 40) 
+    sling.spawn(mousePos);
   
 }
 
 void keyPressed() {
   if (key == ' ')
-    cat.resetWall();
+    sling.resetWall();
 }
 
 // -- Misc
