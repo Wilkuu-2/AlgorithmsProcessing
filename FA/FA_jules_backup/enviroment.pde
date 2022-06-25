@@ -1,6 +1,6 @@
 class Enviroment {
 
-  int num=2000;
+  int num=5000;
   PVector[]sand=new PVector[num];
   PImage vase;
 
@@ -8,7 +8,7 @@ class Enviroment {
 
 
     for (int i=0; i<sand.length; i++) {
-      sand[i]=new PVector(random(width/15, width-width/15), random(height-height/10, height-height/13), int(random(1, 4)));
+      sand[i]=new PVector(random(width/15, width-width/15), random(height-height/7, height-height/13), int(random(1, 4)));
       println(sand[i].z);
     }
 
@@ -22,12 +22,13 @@ class Enviroment {
   }
 
 
-
+  void glass() {
+    //---------------aquarium glime------------------
+    fill(169, 213, 255, 40);
+    rect(width/20, height/20, width-width*2/20, height-height*2/20, 10);
+  }
   void objects() {
     noStroke();
-    //---------------aquarium glime------------------
-    fill(169, 213, 255, 155);
-    rect(width/20, height/20, width-width*2/20, height-height*2/20, 10);
 
     //----------------sand---------------------
     for (int i=0; i<sand.length; i++) {
