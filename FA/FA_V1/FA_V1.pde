@@ -5,18 +5,21 @@ PImage office;
 PVector screenSize;
 long nanosElapsed = System.nanoTime();
 long nanos        = System.nanoTime();
+WaterContainer water;
 
 void setup() {
-  screenSize = new PVector(width, height);
   //fullScreen();
   size(1000, 1000, P2D);
+  screenSize = new PVector(width, height);
   
   env = new Enviroment();
   office=loadImage("office.1.png");
   //bs = new BubbleSystem(new PVector(width/3.5f, height-height/4.5));
-  bs = new BubbleSystem(new PVector(width/3.5f, height-height/4.5));
-  surface.setResizable(true);
+  bs = new BubbleSystem(new PVector(0,0));
+  bs.setPos(env.getVaseBubblePoint().add(new PVector(height/16, -height/16)));
   foliage = new Foliage();
+  surface.setResizable(true);
+  water = new WaterContainer(new PVector(width/16f, height/6f), new PVector(width-width/8f, height/1.32f));
 }
 
 void draw() {
@@ -27,6 +30,8 @@ void draw() {
   // Update
   bs.update();   
   foliage.update();
+  water.update();
+  water.collide(bs.particles);
   
   // Resize
   if (screenSize.x != width || screenSize.y != height) {
@@ -38,6 +43,7 @@ void draw() {
     office.resize(round(screenSize.x), round(screenSize.y));
     env.redrawSand();
     foliage.reposition();
+    water.setSize(new PVector(width/16f, height/6f), new PVector(width-width/8f, height/1.32f));
   }
   //background(255);
   image(office, 0, 0);
@@ -46,6 +52,7 @@ void draw() {
   env.display();
   bs.display();
   foliage.display();
+  water.display();
   env.displayFront();
 
 

@@ -25,7 +25,7 @@ class Foliage {
     
     trees = new SpringTree[treeAmount];
     for (int i = 0; i < treeAmount; i++ )
-      trees[i] = new SpringTree(new PVector(zoneBegin + float(i+1) / float(1+treeAmount) * zoneSize , zoneHeight),
+      trees[i] = new SpringTree(new PVector(zoneBegin + float(i+1) / float(1+treeAmount) * zoneSize , zoneHeight + random(-40+40*i,30*i)),
                                  0, // Starting angle of the root node
                                  angleV, // Variation in starting velocity for each node
                                  angVelV, // Variation in starting angular velocity for each node
