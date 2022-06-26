@@ -1,46 +1,58 @@
-// A simple Bubble class
-
 class Bubble {
-  PVector position;
-  PVector velocity;
-  PVector acceleration;
-  float colorBubble=0, size=0, sizeVar;
+  final static float FRICTION_COEFF = 0.1f;
+  final static float PART_DENSITY = 0.1f;
+  final static float RADIUS_FALLOFF = 1.003f;
+  final static float OPACITY_FALLOFF = 0.997f;
 
-  Bubble(PVector l, float initSize) {
-    acceleration = new PVector(0, -0.025);
-    velocity = new PVector(random(-0.5, 0.5), random(-2, 0));
-    position = l.copy();
-    sizeVar=initSize;
+  PVector vPos;
+  PVector vVel;
+  PVector vAcc;
+  float   radius;
+  float   frictionCoeff;
+  color   partColor;
+
+  boolean deleteMe = false;
+
+  // -- Constructor
+  Bubble(PVector pos, PVector vel, PVector acc, float rad, color col) {
+    vPos = pos.copy();
+    vVel = vel.copy();
+    vAcc = acc.copy();
+    this.radius = rad;
+    partColor = col;
   }
 
-  // Method to update position
   void update() {
-    velocity.add(acceleration);
-    position.add(velocity);
-    colorBubble = position.y;
-    size=(height/30-position.y/30)*sizeVar;
+    // -- Physics
+    vVel.add(vAcc); //Constant acceleration
+
+    vVel.sub(vVel.copy().mult(vVel.mag())
+      .mult(FRICTION_COEFF)
+      .div(pow(radius, 2) * PI * PART_DENSITY)); //Friction
+
+    vPos.add(vVel); // Speed
+
+    radius *= RADIUS_FALLOFF; // Particle becomes bigger the longer it lives
+    partColor = color(red(partColor), green(partColor), blue(partColor), alpha(partColor) * OPACITY_FALLOFF);
+
+    deleteMe = deleteMe || radius < 0.1f; // Delete particle if radius is less than 1;
+    deleteMe = deleteMe || alpha(partColor) < 10; // Delete particle if radius is less than 1;
+    deleteMe = deleteMe || vPos.x > width || vPos.x <0 || vPos.y > height || vPos.y < height *0.16; //Delete particle if it's out of bounds
+
   }
 
-  // Method to display
   void display() {
+    // -- Matrix with the position and rotation of the particle
+    pushMatrix();
+    translate(vPos.x, vPos.y);
+
     noStroke();
-    
-    fill(82, 101, 255, colorBubble);
-    circle(position.x+1, position.y, size/2.5);
-   
-   
-   fill(255, colorBubble);
-    circle(position.x+1, position.y, size/3);
-    
+    fill(color(red(partColor)+100, green(partColor)+100, blue(partColor)+100, 255));
+    circle(0, 0, radius*2f); //Rectangle alternative -- Best Performance
 
-  }
+    fill(partColor);
+    circle(0, 0, radius*1.7f);
 
-  // Is the Bubble still useful?
-  boolean surface() {
-    if (position.y < width/15) {
-      return true;
-    } else {
-      return false;
-    }
+    popMatrix(); //END: Matrix with the position and rotation of the particle
   }
 }

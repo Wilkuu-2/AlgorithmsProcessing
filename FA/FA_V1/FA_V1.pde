@@ -13,6 +13,7 @@ void setup() {
   
   env = new Enviroment();
   office=loadImage("office.1.png");
+  //bs = new BubbleSystem(new PVector(width/3.5f, height-height/4.5));
   bs = new BubbleSystem(new PVector(width/3.5f, height-height/4.5));
   surface.setResizable(true);
   foliage = new Foliage();
@@ -21,7 +22,7 @@ void setup() {
 void draw() {
   nanos = System.nanoTime(); // Start counting time
   
-  bs.addParticle();
+  bs.spawn(random(0.06,0.25));
 
   // Update
   bs.update();   
@@ -32,7 +33,8 @@ void draw() {
     screenSize.x = width;
     screenSize.y = height;
 
-    bs.move(env.getVaseBubblePoint().add(new PVector(height/16, -height/16)));
+    //bs.move(env.getVaseBubblePoint().add(new PVector(height/16, -height/16)));
+    bs.setPos(env.getVaseBubblePoint().add(new PVector(height/16, -height/16)));
     office.resize(round(screenSize.x), round(screenSize.y));
     env.redrawSand();
     foliage.reposition();
@@ -56,7 +58,7 @@ void draw() {
   text(String.format("[Update]: %.5f ms", foliage.updateNanos/1000000f), 20, 50);
   text(String.format("[Draw]: %.5f ms", foliage.drawNanos/1000000f ), 20, 60);
 
-  text(String.format("BUBBLES: %d", bs.bubbles.size()), 10, 70);
+  text(String.format("BUBBLES: %d", bs.particles.size()), 10, 70);
   text(String.format("[Update]: %.5f ms", bs.updateNanos/1000000f), 20, 80);
   text(String.format("[Draw]: %.5f ms", bs.drawNanos/1000000f ), 20, 90);
 
