@@ -42,7 +42,7 @@ class Enviroment {
     noStroke();
     //---------------aquarium glime------------------
     fill(169, 213, 255, 155);
-    rect(width/20, height/20, width-width*2/20, height-height*2/20, 10);
+    rect(width/20, height/10f, width-width*2/20, height-height*2/16, 10);
 
     //----------------sand---------------------
     image(sand, sandPos.x, sandPos.y - sandDuneHeight/2);
@@ -65,7 +65,7 @@ class Enviroment {
     noStroke();
         //----------------aquarium glass--------------
     fill(125, 191, 255, 90);
-    rect(width/16, height/20, width-width*2/16, height-height*2/16, 10);
+    rect(width/16, height/10f, width-width*2/16, height-height*2/12, 10);
 
     //--------------------desk-------------------
     fill(198, 162, 126);

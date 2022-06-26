@@ -4,13 +4,10 @@ class WaterContainer {
   WaterSegment[] segments;
   PVector pos;
   PVector size;
-
   float segmentInterval;
-
-
-
+  
   WaterContainer(PVector pos, PVector size) {
-    segments = new WaterSegment[200];
+    segments = new WaterSegment[100];
 
     for (int i = 0; i < segments.length; i++)
       segments[i] = new WaterSegment(noise(i/float(segments.length)*size.x)*20f);
@@ -51,9 +48,10 @@ class WaterContainer {
     }
     segments[segments.length-1].update(segments[segments.length-1], null);
   }
-  void collide(ArrayList<? extends Collidable> collidables) {
+  
+  void collide(ArrayList<? extends Particle> collidables) {
     for (int i = 0; i < segments.length - 1; i++)
-      for (Collidable col : collidables)
+      for (Particle col : collidables)
         segments[i].collide(new PVector(pos.x + segmentInterval * i, pos.y), col);
   }
 }
