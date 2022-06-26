@@ -13,11 +13,6 @@ class Bubble {
     sizeVar=initSize;
   }
 
-  void run() {
-    update();
-    display();
-  }
-
   // Method to update position
   void update() {
     velocity.add(acceleration);
@@ -29,11 +24,15 @@ class Bubble {
   // Method to display
   void display() {
     noStroke();
-    fill(125, 191, 255, colorBubble);
-    ellipse(position.x, position.y, size, size);
+    
+    fill(82, 101, 255, colorBubble);
+    circle(position.x+1, position.y, size/2.5);
+   
+   
+   fill(255, colorBubble);
+    circle(position.x+1, position.y, size/3);
+    
 
-    fill(255, colorBubble);
-    ellipse(position.x+1, position.y, size/2, size/3);
   }
 
   // Is the Bubble still useful?
