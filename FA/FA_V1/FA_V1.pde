@@ -1,3 +1,10 @@
+/*
+  Final Assignment [M4] Algorithms
+  
+  Copyright 2022 Jakub Stachurski and Jules Verhagen
+
+*/
+
 Enviroment env;
 BubbleSystem bs;
 Foliage foliage;

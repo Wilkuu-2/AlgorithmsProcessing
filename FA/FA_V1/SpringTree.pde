@@ -1,7 +1,11 @@
 /*
  SpringTree
- This is a container class for a tree of spring node.
+ 
+ This is a container class for a tree of spring nodes.
+ 
+ 
  Copyright 2022 Jakub Stachurski and Jules Verhagen
+
  */
 
 

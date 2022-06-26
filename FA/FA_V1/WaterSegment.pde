@@ -1,9 +1,16 @@
+/*
+  WaterSegment
+  
+  A singular segment of the water surface
+  
+   Copyright 2022 Jakub Stachurski and Jules Verhagen
 
+*/
 
 class WaterSegment {
-  static final float mass = 100f;
-  static final float springConstant = 1f;
-  static final float dampingConstant = 20f;
+  static final float mass = 1000f;
+  static final float springConstant = .1f;
+  static final float dampingConstant = 10f;
   static final float bottomOffset = 100;
 
   float radius;
@@ -42,6 +49,7 @@ class WaterSegment {
     if (distance < c.getRadius() + radius) {
       if (c instanceof Bubble) {
         collisionForce += c.getVelocity().y * c.getMass();
+        c.applyForce(new PVector(0,collisionForce));
       }
     }
   }

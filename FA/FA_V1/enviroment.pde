@@ -1,3 +1,13 @@
+/*
+  Enviroment
+  
+  Container for the background elements
+  
+  Copyright 2022 Jakub Stachurski and Jules Verhagen
+  
+  - Im not that proud for this piece of the codebase -Jakub
+*/
+
 class Enviroment {
   float sandDensity= 0.5;
   float sandDuneHeight = 40f;

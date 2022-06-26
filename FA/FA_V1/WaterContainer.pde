@@ -1,4 +1,10 @@
-
+/*
+  WaterContainer
+  
+  This class containes the water surface
+  
+   Copyright 2022 Jakub Stachurski and Jules Verhagen
+*/
 
 class WaterContainer {
   WaterSegment[] segments;
