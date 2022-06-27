@@ -1,4 +1,15 @@
-
+/*
+ Particle
+   A core for the implementation of relatively simple particles
+   This includes:
+     Density related to radius
+     Friction, 
+     Acceleration,
+     Forces with mass
+     
+ 
+ Copyright 2022 Jakub Stachurski and Jules Verhagen
+ */
 
 abstract class Particle{
   float FRICTION_COEFF = 0.1f;
@@ -9,6 +20,7 @@ abstract class Particle{
   PVector vPos;
   PVector vVel;
   PVector vAcc;
+  PVector vForce; 
   float   radius;
   float   mass;
   color   partColor;
@@ -22,6 +34,7 @@ abstract class Particle{
     vPos = pos.copy();
     vVel = vel.copy();
     vAcc = acc.copy();
+    vForce = new PVector(0,0);
     this.radius = rad;
     partColor = col;
     mass = PI*pow(rad,2) * PART_DENSITY;
@@ -35,6 +48,7 @@ abstract class Particle{
       .mult(FRICTION_COEFF)
       .div(pow(radius, 2) * PI * PART_DENSITY)); //Friction
 
+    vVel.add(vForce.div(mass));
     vPos.add(vVel); // Speed
 
     radius *= RADIUS_FALLOFF; // Particle becomes bigger the longer it lives
@@ -63,9 +77,10 @@ abstract class Particle{
   }
   void applyForce(PVector f){
     vVel.add(f.div(mass));
-    
   }
-  
+  void applyConstantForce(PVector f){
+    vForce.add(f);
+  }
   
 
 }

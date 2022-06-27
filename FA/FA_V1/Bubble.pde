@@ -1,6 +1,13 @@
-class Bubble extends Particle {
-  boolean deleteMe = false;
+/*
+ Bubbles
+ 
+ A bubble particle
+ 
+ Copyright 2022 Jakub Stachurski and Jules Verhagen
+ */
 
+
+class Bubble extends Particle {
   // -- Constructor
   Bubble(PVector pos, PVector vel, PVector acc, float rad, color col) {
     super(pos, vel, acc, rad, col);
