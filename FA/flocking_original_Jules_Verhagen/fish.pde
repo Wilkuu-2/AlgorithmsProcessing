@@ -1,4 +1,6 @@
 class Fish {
+
+
   PVector position, speed, acceleration;
   PVector toTarget, accelerationToTarget;
   float maxSpeed=5;
@@ -12,9 +14,15 @@ class Fish {
     acceleration = new PVector(0, 0);
     objPosition= new PVector(width/2, height/2);
     position=_position;
+
+
+   
   }
 
+
   void run(ArrayList<Fish> allfishes) {
+
+
     bounce();
     update(fishs);
     display();
@@ -67,22 +75,22 @@ class Fish {
 
     ///-----------------------------avoidence objects----------------
 
-    //float avoidObj =2;//radius that the flock will avoid
-    //PVector objVector = PVector.sub(objPosition, position);
-    //float squareDistanceObj=objVector.magSq();
-    //if (squareDistanceObj<objSize*objSize) {
-    //  float objAvoid=map(squareDistanceObj, 0, objSize*objSize, avoidObj, 0);
-    //  acceleration.add(objVector.setMag(-avoidObj));
-    //}
-    ///-----------------------------atraction objects----------------
-
     float avoidObj =2;//radius that the flock will avoid
     PVector objVector = PVector.sub(objPosition, position);
     float squareDistanceObj=objVector.magSq();
     if (squareDistanceObj<objSize*objSize) {
       float objAvoid=map(squareDistanceObj, 0, objSize*objSize, avoidObj, 0);
-      acceleration.sub(objVector.setMag(-avoidObj));
+      acceleration.add(objVector.setMag(-avoidObj));
     }
+    ///-----------------------------fish food----------------
+
+    //float avoidObj =2;//radius that the flock will avoid
+    //PVector objVector = PVector.sub(objPosition, position);
+    //float squareDistanceObj=objVector.magSq();
+    //if (squareDistanceObj<objSize*objSize) {
+    //  float objAvoid=map(squareDistanceObj, 0, objSize*objSize, avoidObj, 0);
+    //  acceleration.sub(objVector.setMag(-avoidObj));
+    //}
     //----------------------------seperation---------------------------
     float unitRadius=10;
     float seperationForce=0.5;
@@ -125,4 +133,5 @@ class Fish {
     x=mouseX;
     y=mouseY;
   }
+
 }

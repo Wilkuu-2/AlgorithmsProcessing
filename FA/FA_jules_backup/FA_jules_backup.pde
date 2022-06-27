@@ -1,17 +1,24 @@
 Enviroment env;
 Bubblesystem bs;
-Flock flock;
+Sub sub;
+
+ArrayList<Fish> fishs=new ArrayList<Fish>();
 
 PImage office;
+
 void setup() {
+
   //fullScreen();
   size(1000, 700);
   env = new Enviroment();
   bs = new Bubblesystem(new PVector(width/5, height-height/4));
+  sub = new Sub();
+
   office=loadImage("office.1.png");
-  flock = new Flock();
-  for (int i = 0; i < 150; i++) {
-    flock.addBoid(new Boid(random(width/15,width-width/15), random(height/15,height-height/15)));
+
+  for (int i=0; i<30; i++) {
+    Fish fish=new Fish(new PVector( random(width/15, width), 0));
+    fishs.add(fish);
   }
 }
 
@@ -23,11 +30,17 @@ void draw() {
   env.display();
   bs.addParticle();
   bs.run();
-  flock.run();
+  for (Fish fish : fishs) {
+
+    fish.run(fishs, sub);
+  }
+  sub.run();
   env.glass();
 }
 
-void mouseClicked(){
-
-
+void mouseClicked() {
+  for (Fish fish : fishs) {
+    //println("here");
+    fish.position();
+  }
 }
