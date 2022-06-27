@@ -18,10 +18,10 @@ class BubbleSystem extends ParticleSystem<Bubble> {
   PVector GRAVITY = new PVector(0, -0.05f);
 
 
-  BubbleSystem(PVector pos) {
-    super(pos);
+  BubbleSystem(PVector pos, PVector boundPos, PVector boundSize) {
+    super(pos, boundPos,boundSize);
   }
-  
+
   void spawn(float n) {
     fractionalParticleCount += n;
 
@@ -38,6 +38,48 @@ class BubbleSystem extends ParticleSystem<Bubble> {
         color(random(100, 120), random(120, 150), random(220, 250))
         ));
       fractionalParticleCount --;
+    }
+  }
+}
+
+/*
+ Bubbles
+ 
+ A bubble particle
+ 
+ Copyright 2022 Jakub Stachurski and Jules Verhagen
+ */
+
+
+class Bubble extends Particle {
+  // -- Constructor
+  Bubble(PVector pos, PVector vel, PVector acc, float rad, color col) {
+    super(pos, vel, acc, rad, 0, 0, col);
+    FRICTION_COEFF = 0.1f;
+    PART_DENSITY = 0.1f;
+    RADIUS_FALLOFF = 1.003f;
+    OPACITY_FALLOFF = 0.997f;
+  }
+  
+  void update2() {
+    // Additional rule
+    deleteMe = deleteMe || vPos.x > width || vPos.x <0 || vPos.y > height || vPos.y < height *0.16; //Delete particle if it's out of bounds
+  }
+  void display() {
+   
+    // -- Matrix with the position and rotation of the particle
+    if (!deleteMe) {
+      pushMatrix();
+      translate(vPos.x, vPos.y);
+
+      noStroke();
+      fill(color(red(partColor)+100, green(partColor)+100, blue(partColor)+100, 255));
+      circle(0, 0, radius*2f); //Rectangle alternative -- Best Performance
+
+      fill(partColor);
+      circle(0, 0, radius*1.7f);
+
+      popMatrix(); //END: Matrix with the position and rotation of the particle
     }
   }
 }

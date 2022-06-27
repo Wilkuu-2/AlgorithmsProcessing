@@ -1,9 +1,7 @@
 /*
   SpringNode 
   
-  A single node on a plant
-  
-   Copyright 2022 Jakub Stachurski and Jules Verhagen
+  A single node on a plant 
 */
 static int springNodeCount = 0;
 

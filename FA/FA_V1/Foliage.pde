@@ -42,6 +42,7 @@ class Foliage {
         round(random(5, 10))); // Amount of nodes added to the branch agter branching off
   }
 
+  // -- Update state 
   void update() {
     float timeParameter = millis() * timeFactor;
     updateNanos = System.nanoTime();

@@ -1,16 +1,16 @@
 /*
   WaterSegment
-  
-  A singular segment of the water surface
-  
-   Copyright 2022 Jakub Stachurski and Jules Verhagen
-
-*/
+ 
+ A singular segment of the water surface
+ 
+ Copyright 2022 Jakub Stachurski and Jules Verhagen
+ 
+ */
 
 class WaterSegment {
-  static final float mass = 1000f;
+  static final float mass = 10000f;
   static final float springConstant = .1f;
-  static final float dampingConstant = 10f;
+  static final float dampingConstant = 5f;
   static final float bottomOffset = 100;
 
   float radius;
@@ -30,10 +30,14 @@ class WaterSegment {
     float damping = -velocity* dampingConstant;
     force = spring + damping + collisionForce;
 
-    if (prev != null)
-      velocity -= prev.force / mass / 2f;
-    if (next != null)
-      velocity -= next.force / mass / 2f;
+
+    float forceDivisor = (prev != null && next != null) ? 2f : 1f;
+    if (prev != null) {
+      velocity -= prev.force / mass / forceDivisor;
+    }
+    if (next != null) {
+      velocity -= next.force / mass / forceDivisor;
+    }
 
     velocity += force / mass;
     displacement += velocity;
@@ -49,7 +53,14 @@ class WaterSegment {
     if (distance < c.getRadius() + radius) {
       if (c instanceof Bubble) {
         collisionForce += c.getVelocity().y * c.getMass();
-        c.applyForce(new PVector(0,collisionForce));
+        c.applyForce(new PVector(0, collisionForce));
+      } else if ( c instanceof Pellet){
+        collisionForce += c.getVelocity().y * c.getMass();
+        c.applyForce(new PVector(0,-0.01 * collisionForce));
+        c.applyConstantForce(new PVector(0,-0.05));
+        c.FRICTION_COEFF = 20f; 
+        c.ROT_FRICTION = 0.10f; 
+        
       }
     }
   }
