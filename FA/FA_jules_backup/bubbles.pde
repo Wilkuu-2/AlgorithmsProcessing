@@ -1,15 +1,14 @@
-// A simple Bubble class
 
 class Bubble {
-  PVector position;
-  PVector velocity;
+
+  PVector speed, location;
   PVector acceleration;
   float colorBubble=0, size=0, sizeVar;
 
-  Bubble(PVector l, float initSize) {
+  Bubble(PVector initLocation, float initSize) {
     acceleration = new PVector(0, -0.025);
-    velocity = new PVector(random(-0.5, 0.5), random(-2, 0));
-    position = l.copy();
+    speed = new PVector(random(-0.5, 0.5), random(-2, 0));
+    location = initLocation.copy();
     sizeVar=initSize;
   }
 
@@ -18,27 +17,27 @@ class Bubble {
     display();
   }
 
-  // Method to update position
+  // location of bubble is updated 
   void update() {
-    velocity.add(acceleration);
-    position.add(velocity);
-    colorBubble = position.y;
-    size=(height/30-position.y/30)*sizeVar;
+    speed.add(acceleration);
+    location.add(speed);
+    colorBubble = location.y;
+    size=(height/30-location.y/30)*sizeVar;
   }
 
-  // Method to display
+  // bubble form 
   void display() {
     noStroke();
     fill(125, 191, 255, colorBubble);
-    ellipse(position.x, position.y, size, size);
-
+    ellipse(location.x, location.y, size, size);
     fill(255, colorBubble);
-    ellipse(position.x+1, position.y, size/2, size/3);
+    ellipse(location.x+1, location.y, size/2, size/3);
   }
 
-  // Is the Bubble still useful?
+//if the bubble reatches the surface it will delete its self so there wont be any lag 
+ 
   boolean surface() {
-    if (position.y < width/20) {
+    if (location.y < width/20) {
       return true;
     } else {
       return false;
