@@ -13,7 +13,7 @@ void setup() {
   env = new Enviroment();
   bs = new Bubblesystem(new PVector(width/5, height-height/4));
   sub = new Sub();
-
+// got the image from : https://www.freepik.com/free-vector/cartoon-illustration-empty-office-with-window-modern-interior-with-furniture_3519647.htm#query=office%20window&position=11&from_view=keyword
   office=loadImage("office.1.png");
 
   for (int i=0; i<300; i++) {
