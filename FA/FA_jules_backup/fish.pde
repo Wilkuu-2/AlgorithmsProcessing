@@ -33,7 +33,7 @@ class Fish {
   void display() {
     //------------------display fish----------------
     float theta = speed.heading2D() + radians(90);
-    int r=5;
+    int r=2;
     fill(200, 100);
     //stroke(255);
     pushMatrix();
@@ -118,7 +118,7 @@ class Fish {
 
 
     //----------------------------seperation---------------------------
-    float unitRadius=50;
+    float unitRadius=20;
     float seperationForce=0.5;
     for (Fish otherFish : allFishs) {
       if (otherFish==this) continue;// cont mistake same bird
@@ -133,7 +133,7 @@ class Fish {
 
     //----------------------------ALIGNMENT---------------------------
     PVector averegeVectorsOthers= new PVector(0, 0);
-    float alignmentRadius=100;
+    float alignmentRadius=40;
     int alignmentOther=0;
     float forceAlignment=1;
     for (Fish otherFish : allFishs) {

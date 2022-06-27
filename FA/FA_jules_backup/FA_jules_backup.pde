@@ -16,7 +16,7 @@ void setup() {
 
   office=loadImage("office.1.png");
 
-  for (int i=0; i<30; i++) {
+  for (int i=0; i<300; i++) {
     Fish fish=new Fish(new PVector( random(width/15, width), 0));
     fishs.add(fish);
   }
