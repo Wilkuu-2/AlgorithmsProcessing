@@ -42,18 +42,19 @@ class SpringTree {
     }
   }
   
-  
+  // Display the root, which will display the rest 
   void display(){
     pushMatrix();
     translate(position.x,position.y);
     root.display();
     popMatrix();
   }
+  // Update the root, which will update the rest 
   void update(float timeParameter){
     root.update(timeParameter); 
     
   }
-  
+  // Move the tree 
   void move(PVector newPos){
     position = newPos.copy();
   }

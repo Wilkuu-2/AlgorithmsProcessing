@@ -213,11 +213,11 @@ class SpringNode {
     }
   }
   
+  // Try to avoid getting out of glass
   float collision(float force){
     if(absPos.mag() > 1 && (absPos.x < width/12f || absPos.x > width - width/12f)){
       deleteMe = true; 
     }
-    
     if(absPos.x < width/10f){
       return abs(pow(3,(absPos.x - width/10f)) *collisionForceMult) + abs(force);
     }

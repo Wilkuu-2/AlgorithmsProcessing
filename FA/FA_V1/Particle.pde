@@ -18,16 +18,21 @@ abstract class Particle {
   float OPACITY_FALLOFF = 0.997f;
   float ROT_FRICTION    = 0f;
 
+  // -- State
+  // Vectiors 
   PVector vPos;
   PVector vVel;
   PVector vAcc;
   PVector vForce;
-  float   radius;
+  
+  //Rotation
   float   rot;
   float   rVel;
+  // Misc
+  float   radius;
   float   mass;
   color   partColor;
-
+  // Deletion flag 
   boolean deleteMe = false;
 
 
@@ -42,21 +47,26 @@ abstract class Particle {
     this.rVel   = rVel;
     this.rot    = rot;
     partColor = col;
+    // Determine mass using density
     mass = PI*pow(rad, 2) * PART_DENSITY;
   }
 
   void update(PVector boundPos, PVector boundSize) {
     // -- Physics
     vVel.add(vAcc); //Constant acceleration
-
+    
     vVel.sub(vVel.copy().mult(vVel.mag())
       .mult(FRICTION_COEFF)
       .div(pow(radius, 2) * PI * PART_DENSITY)); //Friction
 
+    // Rotation
     rVel -= rVel * ROT_FRICTION;
     rot += rVel;
+    
+    // Apply forces 
     vVel.add(vForce.div(mass));
-
+    
+    // Bounce 
     PVector relPos = PVector.sub(vPos, boundPos);
     if (relPos.x < 0)
       vVel.x = abs(vVel.x);
@@ -68,21 +78,22 @@ abstract class Particle {
       vVel.y = -abs(vVel.y);
 
 
-    vPos.add(vVel); // Speed
+    vPos.add(vVel); // Apply speed 
 
     radius *= RADIUS_FALLOFF; // Particle becomes bigger the longer it lives
     mass = PI*pow(radius, 2) * PART_DENSITY;
-
+    
+    // Lower opacity of the particle 
     partColor = color(red(partColor), green(partColor), blue(partColor), alpha(partColor) * OPACITY_FALLOFF);
 
-    deleteMe = deleteMe || radius < 0.00001f; // Delete particle if radius is less than 1;
-    update2();
+    deleteMe = deleteMe || radius < 0.01f; // Delete particle if radius is less than 1;
+    update2(); // Additional update handle for the particle subclasses 
   }
 
-  void update2() {
-  }
-  abstract void display();
+  void update2() {}        // Handle for custom state update 
+  abstract void display(); // Handle to display the particle 
 
+  // -- Getters 
   PVector getPosition() {
     return vPos.copy();
   }
@@ -95,9 +106,12 @@ abstract class Particle {
   float getMass() {
     return mass;
   }
+  
+  // Applies force for the duration of the frame
   void applyForce(PVector f) {
     vVel.add(f.div(mass));
   }
+  // Applies force permanently 
   void applyConstantForce(PVector f) {
     vForce.add(f);
   }

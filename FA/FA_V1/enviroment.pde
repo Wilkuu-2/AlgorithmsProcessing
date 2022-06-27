@@ -15,8 +15,7 @@ class Enviroment {
   PImage vase;
   PGraphics sand;
   PVector sandPos;
-  long backNanos = System.nanoTime();
-  long frontNanos = System.nanoTime();
+
 
   Enviroment( ) {
     vase=loadImage("vase.png");
@@ -48,7 +47,6 @@ class Enviroment {
 
 
   void display() {
-    backNanos = System.nanoTime();
     noStroke();
     //---------------aquarium glime------------------
     fill(169, 213, 255, 155);
@@ -61,17 +59,17 @@ class Enviroment {
 
     image(vase, width/10f, height-height/3.2, ARatio * height/4f, height/4f);
     
-    backNanos = System.nanoTime() - backNanos;
 
   }
   
+  // Returns the point where the bubbles should spawn
   PVector getVaseBubblePoint(){
     float ARatio = vase.width/ vase.height;
     return new PVector(width/10f + ARatio * height/9f , height-height/3.2 + height/7f);
   }
   
+  // Display things that should be on the front 
   void displayFront(){
-    frontNanos = System.nanoTime();
     noStroke();
         //----------------aquarium glass--------------
     fill(125, 191, 255, 90);
@@ -80,7 +78,6 @@ class Enviroment {
     //--------------------desk-------------------
     fill(198, 162, 126);
     rect(0, height-height/20, width, height);
-    
-    frontNanos = System.nanoTime() - frontNanos;
+
   }
 }

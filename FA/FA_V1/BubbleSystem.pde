@@ -2,6 +2,8 @@
  BubbleSystem
  Container for bubbles
  
+ The bubble is under this class
+ 
  
  Copyright 2022 Jakub Stachurski and Jules Verhagen
  */
@@ -23,14 +25,17 @@ class BubbleSystem extends ParticleSystem<Bubble> {
   }
 
   void spawn(float n) {
+    // Add the input value to the fractional count 
     fractionalParticleCount += n;
-
+    
+    // Pop whole particles from the count
     for (int i = 0; i < floor(fractionalParticleCount); i++) {
       PVector pos = PVector.random2D().mult(random(0, SPAWN_DISTANCE));
       PVector vel = PVector.random2D().mult(random(SPAWN_SPEED_MIN, SPAWN_SPEED_MAX));
       PVector acc = PVector.add(pos.copy().mult(random(SPAWN_ACCELERATION_MIN, SPAWN_ACCELERATION_MAX)), GRAVITY);
       pos.add(vPos);
-
+      
+      // Initialize particle
       particles.add(new Bubble(pos,
         vel,
         acc,
@@ -41,6 +46,7 @@ class BubbleSystem extends ParticleSystem<Bubble> {
     }
   }
 }
+
 
 /*
  Bubbles
